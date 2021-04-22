@@ -25,7 +25,7 @@ SECRET_KEY = '!_0+@9h5wj5c*vrk7w&)nqj^y*%a*_ycz&i^&sew^)m(!$=(ka'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['t2-taller-integracion-mvaldes.herokuapp.com']
 
 
 # Application definition
