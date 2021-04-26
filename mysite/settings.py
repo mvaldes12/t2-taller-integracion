@@ -25,12 +25,13 @@ SECRET_KEY = '!_0+@9h5wj5c*vrk7w&)nqj^y*%a*_ycz&i^&sew^)m(!$=(ka'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['t2-taller-integracion-mvaldes.herokuapp.com']
+ALLOWED_HOSTS = ['t2-taller-integracion-mvaldes.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'tarea2.apps.Tarea2Config',
     'django.contrib.admin',
     'django.contrib.auth',
