@@ -54,14 +54,14 @@ def artist_list(request):
         else:
             url_general = 'https://t2-taller-integracion-mvaldes.herokuapp.com/' 
             self_url = url_general + 'artist/' + id_encoded
-            albums_url = self_url + 'albums/'
-            tracks_url = self_url + 'tracks/'
+            albums_url = self_url + '/albums'
+            tracks_url = self_url + '/tracks'
             new_artist = Artist.objects.create(id_artist = id_encoded, name = artist_data["name"],
             age = artist_data["age"], albums_url = albums_url, tracks_url = tracks_url,
             self_url = self_url)
             new_artist.save()
             serializer = ArtistSerializer(new_artist)
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     else:
         return Response( status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -116,7 +116,7 @@ def new_album(request, id_artist):
             genre = album_data["genre"], artist_url = artist_url ,tracks_url = tracks_url, self_url = self_url)
             new_album.save()
             serializer = AlbumSerializer(new_album)
-            return Response(serializer.data)
+            return Response(serializer.data,  status=status.HTTP_201_CREATED)
 
     if request.method == 'GET':
         existe_artista = Artist.objects.filter(id_artist = id_artist)
@@ -140,7 +140,7 @@ def new_track(request, id_album):
             return Response( status=status.HTTP_400_BAD_REQUEST)
         nombre_track = track_data["name"]
         #if (nombre_track) != str(nombre_track) or (track_data["duration"]) != int((track_data["duration"])):
-        if type(nombre_track) != str or type(track_data["duration"]) != int:
+        if type(nombre_track) != str or type(track_data["duration"]) != float:
             return Response( status=status.HTTP_400_BAD_REQUEST)
 
         string = nombre_track + ":" + id_album
@@ -170,7 +170,7 @@ def new_track(request, id_album):
             duration = (track_data["duration"]), times_played = 0, artist_url = artist_url , album_url = album_url, self_url = self_url)
             new_track.save()
             serializer = TrackSerializer(new_track)
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     if request.method == 'GET':
         existe_album = Album.objects.filter(id_album = id_album)
