@@ -303,6 +303,8 @@ def play_artist(request, id_artist):
                     track_sumado = track.save()
                     serializer = TrackSerializer(track_sumado)
             return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
     else:
         return Response( status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -319,6 +321,8 @@ def play_album(request, id_album):
                 track_sumado = track.save()
                 serializer = TrackSerializer(track_sumado)
             return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
     else:
         return Response( status=status.HTTP_405_METHOD_NOT_ALLOWED)
